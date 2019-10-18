@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.view {
+  padding: 0;
+  height: 100%;
+}
+
+.triangle-foot {
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  border-left: 100vw solid #0041B3;
+  border-right: 0em solid transparent;
+  border-bottom: 0em solid transparent;
+  border-top: 5em solid transparent;
+  position: fixed;
+  text-align: left;
+}
