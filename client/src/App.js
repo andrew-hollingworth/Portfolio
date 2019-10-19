@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Menu from './components/Menu'
+import MenuBar from './components/MenuBar'
 
 
 
 const App = () => {
 
   return (
-    <Menu />
+    <MenuBar />
   );
 }
 
