@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
+// MATERIAL UI PARTS
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
+// ICONS/BUTTONS
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton'
+// COMPONENTS
 import About from './About';
 import Contact from './Contact';
 import Projects from './Projects';
 import Footer from './Footer'
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
+// === === === === TABS AND TAB PANELS === === === === //
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -61,6 +65,7 @@ function LinkTab(props) {
   );
 }
 
+// === === === === MOBILE MENU  === === === === //
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -92,7 +97,7 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-
+// === === === === STYLES === === === === //
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -129,12 +134,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// === === === === FUNCTIONAL COMPONENT === === === === //
 const MenuBar = (props) => {
+  // === === === === BUILDERS HOOKS === === === === //
   const classes = useStyles();
   const theme = useTheme();
-  const { width } = props;
   const [value, setValue] = React.useState(0);
-  const { container } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event, newValue) => {
@@ -153,6 +158,7 @@ const MenuBar = (props) => {
     setAnchorEl(null);
   };
 
+  // === === === === RENDER === === === === //
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
@@ -173,10 +179,10 @@ const MenuBar = (props) => {
           onClose={handleClose}
         >
           <StyledMenuItem onClick={(e) => { handleChange(e, 0) }} >
-            <ListItemText primary="About Me" value={value} {...a11yProps(0)} />
+            <ListItemText primary="My Work" value={value} {...a11yProps(0)} />
           </StyledMenuItem>
           <StyledMenuItem onClick={(e) => { handleChange(e, 1) }}>
-            <ListItemText primary="My Work" {...a11yProps(1)} />
+            <ListItemText primary="About Me" {...a11yProps(1)} />
           </StyledMenuItem>
           <StyledMenuItem onClick={(e) => { handleChange(e, 2) }}>
             <ListItemText primary="Get in Touch" {...a11yProps(2)} />
@@ -189,8 +195,8 @@ const MenuBar = (props) => {
             onChange={handleChange}
             aria-label="nav tabs"
           >
-            <LinkTab className={classes.tabs} label="About Me" href="/about" {...a11yProps(0)} />
-            <LinkTab className={classes.tabs} label="My Work" href="/projects" {...a11yProps(1)} />
+            <LinkTab className={classes.tabs} label="My Work" href="/projects" {...a11yProps(0)} />
+            <LinkTab className={classes.tabs} label="About Me" href="/about" {...a11yProps(1)} />
             <LinkTab className={classes.tabs} label="Get in Touch" href="/contact" {...a11yProps(2)} />
           </Tabs>
         </Hidden>
@@ -203,10 +209,10 @@ const MenuBar = (props) => {
         index={value}
         onChangeIndex={handleChangeIndex} >
         <TabPanel className={classes.tabs} value={value} index={0}>
-          <About />
+          <Projects />
         </TabPanel>
         <TabPanel className={classes.tabs} value={value} index={1}>
-          <Projects />
+          <About />
         </TabPanel>
         <TabPanel className={classes.tabs} value={value} index={2}>
           <Contact />
