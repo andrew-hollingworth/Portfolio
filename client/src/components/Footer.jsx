@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     height: 0,
     width: '100%',
     position: 'fixed',
-    borderLeft: '100vw solid #0041B3',
+    borderLeft: '100vw solid #3f51b5',
     borderRight: '0em solid transparent',
     borderBottom: '0em solid transparent',
     borderTop: '4em solid transparent',
@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.2em',
       margin: theme.spacing(0.5),
     },
+    '&:hover': {
+      color: '#829baf',
+    }
   },
 }));
 

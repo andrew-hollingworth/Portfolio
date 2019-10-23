@@ -12,14 +12,28 @@ const useStyles = makeStyles(theme => ({
       fontSize: '3rem'
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '2.9rem'
+      fontSize: '2rem'
     },
   },
   body: {
     fontFamily: "'Montserrat', sans-serif",
+    margin: '0 auto',
+    marginBottom: '1em',
     padding: '2em 0 0 0',
     textAlign: 'center',
+    maxWidth: '90%',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1rem'
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.7rem'
+    },
   },
+  profile: {
+    display: 'block',
+    margin: '0 auto',
+    maxWidth: '84%',
+  }
 }));
 
 const About = () => {
@@ -31,8 +45,9 @@ const About = () => {
         Hey, I'm Andrew.
       </Typography>
       <Typography className={classes.body} variant='body1'>
-        I’m a web developer with a passion for making things, storytelling, and learning.
+        I’m a web developer with a passion for making things, storytelling, and learning. My work in production, taught me to plan my code three steps ahead and stay organized. My passion for storytelling helps me articulate my ideas to others on my team accurately and effectively. And my love of learning means I’m always looking for new challenges.
       </Typography>
+      <img className={classes.profile} src="https://i.imgur.com/bRgMl6q.png" alt="My Pretty Face" />
     </div>
   )
 }

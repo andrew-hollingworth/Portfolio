@@ -4,10 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { getCards } from '../services/api-helper'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -25,17 +24,36 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "'Montserrat', sans-serif",
     padding: '2em 0 0 0',
     display: 'flex',
-    flexFlow: 'column wrap',
+    flexFlow: 'row wrap',
     alignContent: 'space-around',
     marginBottom: '4em'
   },
   card: {
     margin: '1em auto',
-    width: '80%',
+    maxWidth: '80%',
+    width: 320,
+  },
+  cardAction: {
+    height: '100%',
+  },
+  cardTitle: {
+    fontFamily: "'Red Hat Text', sans-serif",
+  },
+  cardDescription: {
+    fontFamily: "'Montserrat', sans-serif",
+  },
+  cardContent: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
   },
   media: {
     height: 140,
+    backgroundPosition: 'initial',
   },
+  chips: {
+    margin: '0.4em',
+    fontFamily: "'Montserrat', sans-serif",
+  }
 }));
 
 
@@ -46,25 +64,34 @@ export default function Projects() {
 
   const setCardsData = async () => {
     const cards = await getCards();
-    console.log(cards)
     setCards(cards);
   }
 
   const builtCards = cards && cards.map((card, index) => {
+    const technologies = card.gsx$technologies.$t.split(',')
     return <Card key={index} className={classes.card}>
-      <CardActionArea>
+      <CardActionArea className={classes.cardAction} href={card.gsx$url.$t} target='_blank'>
         <CardMedia
           className={classes.media}
           image={card.gsx$image.$t}
           title={card.gsx$title.$t}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent className={classes.cardContent}>
+          <Typography className={classes.cardTitle} gutterBottom variant="h5" component="h2">
             {card.gsx$title.$t}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography className={classes.cardDescription} variant="body2" color="textSecondary" component="p">
             {card.gsx$description.$t}
           </Typography>
+          <div>
+            {technologies.map((tech, index) => {
+              return <Chip
+                className={classes.chips}
+                key={index}
+                size="small"
+                label={tech} />
+            })}
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>

@@ -13,9 +13,13 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 // ICONS/BUTTONS
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 // COMPONENTS
 import About from './About';
 import Contact from './Contact';
@@ -88,6 +92,9 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
+    '& .MuiListItemText-primary': {
+      fontFamily: "'Red Hat Text', sans-serif",
+    },
     '&:focus': {
       backgroundColor: theme.palette.primary.main,
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
@@ -111,6 +118,7 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     fontFamily: "'Red Hat Text', sans-serif",
+    fontSize: '1em',
     padding: 0,
     margin: 0,
   },
@@ -131,6 +139,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  backToTop: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    zIndex: 2,
   },
 }));
 
@@ -158,10 +172,35 @@ const MenuBar = (props) => {
     setAnchorEl(null);
   };
 
+  function ScrollTop(props) {
+    const { children } = props;
+    const classes = useStyles();
+    const trigger = useScrollTrigger({
+      disableHysteresis: true,
+      threshold: 100,
+    });
+
+    const handleBackToTop = event => {
+      const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+      if (anchor) {
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    return (
+      <Zoom in={trigger}>
+        <div onClick={handleBackToTop} role="presentation" className={classes.backToTop}>
+          {children}
+        </div>
+      </Zoom>
+    );
+  }
+
   // === === === === RENDER === === === === //
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar id="back-to-top-anchor" position="static" className={classes.appBar}>
         <IconButton
           color="inherit"
           aria-label="open menu"
@@ -179,7 +218,7 @@ const MenuBar = (props) => {
           onClose={handleClose}
         >
           <StyledMenuItem onClick={(e) => { handleChange(e, 0) }} >
-            <ListItemText primary="My Work" value={value} {...a11yProps(0)} />
+            <ListItemText primary="My Work" {...a11yProps(0)} />
           </StyledMenuItem>
           <StyledMenuItem onClick={(e) => { handleChange(e, 1) }}>
             <ListItemText primary="About Me" {...a11yProps(1)} />
@@ -218,13 +257,19 @@ const MenuBar = (props) => {
           <Contact />
         </TabPanel>
       </SwipeableViews>
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
       <Footer />
     </div>
   );
 }
 
-MenuBar.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
+// MenuBar.propTypes = {
+//   width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
+// };
+
 
 export default withWidth()(MenuBar)

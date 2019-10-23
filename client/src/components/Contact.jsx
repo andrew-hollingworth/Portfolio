@@ -1,13 +1,14 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexFlow: 'column nowrap',
     padding: '2em 0 0 0'
   },
   textField: {
@@ -34,7 +35,22 @@ const useStyles = makeStyles(theme => ({
       fontSize: '2.9rem'
     },
   },
+  button: {
+    alignSelf: 'flex-end',
+    fontFamily: "'Red Hat Text', sans-serif",
+    marginRight: '10%',
+  }
 }));
+
+// CITATION: https://stackoverflow.com/questions/271171/sending-emails-with-javascript/271172#271172
+const sendMail = (name, message) => {
+  const link = 'mailto:andrew.hollingworth@gmail.com'
+    + '?cc='
+    + '&subject=' + escape(name + ' Wants to Get in Touch!')
+    + '&body=' + escape(message);
+  window.location.href = link;
+}
+
 
 export default function Contact() {
   const classes = useStyles();
@@ -96,6 +112,15 @@ export default function Contact() {
           rows='4'
           rowsMax="6"
         />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          endIcon={<SendIcon />}
+          onClick={() => { sendMail(values.name, values.message) }}
+        >
+          Send
+      </Button>
       </form>
     </>
   )
