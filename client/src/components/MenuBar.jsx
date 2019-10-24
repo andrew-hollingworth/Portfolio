@@ -110,6 +110,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: 0,
     margin: 0,
+    minHeight: '96%',
   },
   appBar: {
     display: 'flex',
@@ -175,14 +176,10 @@ const MenuBar = (props) => {
   function ScrollTop(props) {
     const { children } = props;
     const classes = useStyles();
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 100,
-    });
+    const trigger = useScrollTrigger();
 
     const handleBackToTop = event => {
       const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
-
       if (anchor) {
         anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
@@ -197,6 +194,9 @@ const MenuBar = (props) => {
     );
   }
 
+  ScrollTop.propTypes = {
+    children: PropTypes.element.isRequired,
+  };
   // === === === === RENDER === === === === //
   return (
     <div className={classes.root}>

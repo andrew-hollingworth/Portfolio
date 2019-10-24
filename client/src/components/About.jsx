@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
   body: {
     fontFamily: "'Montserrat', sans-serif",
     margin: '0 auto',
-    marginBottom: '1em',
     padding: '2em 0 0 0',
     textAlign: 'center',
     maxWidth: '90%',

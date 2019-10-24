@@ -8,7 +8,6 @@ import { indigo } from '@material-ui/core/colors'
 
 const theme = createMuiTheme({
   palette: {
-    type: 'light',
     primary: indigo,
     secondary: {
       main: '#bbdefb',

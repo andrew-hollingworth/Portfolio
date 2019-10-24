@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'row wrap',
     alignContent: 'space-around',
-    marginBottom: '4em'
   },
   card: {
     margin: '1em auto',
