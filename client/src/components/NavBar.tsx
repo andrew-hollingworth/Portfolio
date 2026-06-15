@@ -45,7 +45,7 @@ export default function NavBar({ onToggleTheme, isDark }: NavBarProps) {
 
           {/* Mobile: hamburger */}
           <button
-            onClick={() => setMenuOpen(o => !o)}
+            onClick={() => setMenuOpen(prev => !prev)}
             aria-label="Toggle menu"
             className="flex md:hidden p-1.5 rounded hover:text-secondary transition-colors"
           >

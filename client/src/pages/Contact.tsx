@@ -5,9 +5,8 @@ import { CONTACT_EMAIL } from '../config'
 export default function Contact() {
   const [values, setValues] = useState({ name: '', email: '', message: '' })
 
-  const handleChange = (field: keyof typeof values) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setValues(v => ({ ...v, [field]: e.target.value }))
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setValues(prev => ({ ...prev, [e.target.id]: e.target.value }))
 
   const sendMail = () => {
     const link =
@@ -25,13 +24,13 @@ export default function Contact() {
       <h1 className="font-heading text-4xl sm:text-5xl font-semibold text-center text-text-primary mb-10">
         Get in Touch!
       </h1>
-      <form noValidate autoComplete="on" className="flex flex-col gap-4">
+      <form noValidate className="flex flex-col gap-4">
         <input
           id="name"
           type="text"
           placeholder="Name"
           value={values.name}
-          onChange={handleChange('name')}
+          onChange={handleChange}
           className={inputClass}
         />
         <input
@@ -39,16 +38,16 @@ export default function Contact() {
           type="email"
           placeholder="Email"
           value={values.email}
-          onChange={handleChange('email')}
+          onChange={handleChange}
           className={inputClass}
         />
         <textarea
           id="message"
           placeholder="Message"
           value={values.message}
-          onChange={handleChange('message')}
+          onChange={handleChange}
           rows={5}
-          className={inputClass + ' resize-none'}
+          className={`${inputClass} resize-none`}
         />
         <div className="flex justify-end">
           <button
