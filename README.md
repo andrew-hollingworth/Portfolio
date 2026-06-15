@@ -32,7 +32,7 @@ npm run preview    # Serve the production build locally
 |---|---|
 | Colors (light + dark) | CSS variables in [`client/src/index.css`](client/src/index.css) — `:root` and `.dark` blocks |
 | Fonts | Google Fonts `<link>` in [`client/index.html`](client/index.html) **and** font variables in `src/index.css` — change both together |
-| Resume PDF | Replace [`client/public/resume.pdf`](client/public/resume.pdf) with your updated file — no code changes needed |
+| Resume PDF | Replace [`client/public/AndrewHollingworthResume2024.pdf`](client/public/AndrewHollingworthResume2024.pdf) and update `RESUME_URL` in `src/config.ts` to match the new filename |
 | Add a project | Add an entry to the `projects` array in [`client/src/data/projects.ts`](client/src/data/projects.ts) |
 | Show/hide My Work nav link | Set `SHOW_WORK_NAV` in [`client/src/config.ts`](client/src/config.ts) |
 | Contact email | Set `CONTACT_EMAIL` in [`client/src/config.ts`](client/src/config.ts) |

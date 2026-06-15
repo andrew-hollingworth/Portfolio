@@ -7,12 +7,13 @@ export interface Project {
 }
 
 // Add projects here. Empty array → empty state UI in Work.tsx.
-export const projects: Project[] = [
-  // {
-  //   title: 'My Project',
-  //   description: 'What it does.',
-  //   url: 'https://github.com/...',
-  //   image: '/images/my-project.png',
-  //   tags: ['React', 'TypeScript'],
-  // },
-]
+// export const projects: Project[] = [
+//   {
+//     title: 'My Project',
+//     description: 'What it does and why it matters.',
+//     url: 'https://github.com/andrew-hollingworth/my-project',
+//     image: '/images/my-project.png',  // place image in client/public/images/
+//     tags: ['React', 'TypeScript'],
+//   },
+// ]
+export const projects: Project[] = []

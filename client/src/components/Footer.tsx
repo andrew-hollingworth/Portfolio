@@ -26,8 +26,8 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-primary text-white py-2 z-40">
-      <div className="flex flex-col items-center gap-1">
+    <footer className="bg-surface text-text-primary py-6 mt-8">
+      <div className="flex flex-col items-center gap-2">
         <div className="flex items-center gap-3 sm:gap-4">
           {links.map(({ href, icon, label }) => (
             <a
@@ -42,7 +42,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="text-xs text-white/70 font-body">
+        <p className="text-xs text-text-secondary font-body">
           © Andrew Hollingworth {new Date().getFullYear()}
         </p>
       </div>

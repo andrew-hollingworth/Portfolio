@@ -18,7 +18,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full font-body text-sm text-text-primary bg-surface border border-text-secondary/30 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary transition-colors placeholder:text-text-secondary/60'
+    'w-full font-body text-sm text-text-primary bg-surface border border-border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary transition-colors placeholder:text-placeholder'
 
   return (
     <div className="max-w-xl mx-auto px-6 py-12">
@@ -54,7 +54,7 @@ export default function Contact() {
           <button
             type="button"
             onClick={sendMail}
-            className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-body font-medium px-6 py-2.5 rounded-lg transition-colors"
+            className="flex items-center gap-2 bg-btn-bg hover:bg-primary-dark text-btn-text font-body font-medium px-6 py-2.5 rounded-lg transition-colors"
           >
             Send
             <Icon icon="ph:paper-plane-right" width={18} />

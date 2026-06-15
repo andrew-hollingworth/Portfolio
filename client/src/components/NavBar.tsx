@@ -9,10 +9,8 @@ interface NavBarProps {
 }
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `px-3 py-1 rounded transition-colors font-body text-sm font-medium ${
-    isActive
-      ? 'text-primary font-semibold'
-      : 'text-text-secondary hover:text-text-primary'
+  `px-3 py-1 rounded transition-colors font-heading text-sm font-medium ${
+    isActive ? 'text-secondary font-semibold underline underline-offset-4' : 'text-white/80 hover:text-secondary'
   }`
 
 export default function NavBar({ onToggleTheme, isDark }: NavBarProps) {
@@ -31,7 +29,7 @@ export default function NavBar({ onToggleTheme, isDark }: NavBarProps) {
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <NavLink
             to="/about"
-            className="font-heading font-semibold text-lg text-white hover:opacity-80 transition-opacity"
+            className="font-heading font-medium text-lg text-white hover:text-secondary transition-colors"
           >
             Andrew Hollingworth
           </NavLink>
@@ -39,59 +37,25 @@ export default function NavBar({ onToggleTheme, isDark }: NavBarProps) {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-2">
             {SHOW_WORK_NAV && (
-              <NavLink to="/work" className={({ isActive }) =>
-                `px-3 py-1 rounded transition-colors font-body text-sm font-medium ${
-                  isActive ? 'text-white font-semibold underline underline-offset-4' : 'text-white/80 hover:text-white'
-                }`
-              }>
-                My Work
-              </NavLink>
+              <NavLink to="/work" className={navLinkClass}>My Work</NavLink>
             )}
-            <NavLink to="/about" className={({ isActive }) =>
-              `px-3 py-1 rounded transition-colors font-body text-sm font-medium ${
-                isActive ? 'text-white font-semibold underline underline-offset-4' : 'text-white/80 hover:text-white'
-              }`
-            }>
-              About Me
-            </NavLink>
-            <NavLink to="/contact" className={({ isActive }) =>
-              `px-3 py-1 rounded transition-colors font-body text-sm font-medium ${
-                isActive ? 'text-white font-semibold underline underline-offset-4' : 'text-white/80 hover:text-white'
-              }`
-            }>
-              Get in Touch
-            </NavLink>
-            <button
-              onClick={onToggleTheme}
-              aria-label="Toggle dark mode"
-              className="ml-2 p-1.5 rounded hover:bg-white/20 transition-colors"
-            >
-              <Icon icon={isDark ? 'ph:sun' : 'ph:moon'} width={20} />
-            </button>
+            <NavLink to="/about" className={navLinkClass}>About Me</NavLink>
+            <NavLink to="/contact" className={navLinkClass}>Get in Touch</NavLink>
           </nav>
 
-          {/* Mobile: theme toggle + hamburger */}
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={onToggleTheme}
-              aria-label="Toggle dark mode"
-              className="p-1.5 rounded hover:bg-white/20 transition-colors"
-            >
-              <Icon icon={isDark ? 'ph:sun' : 'ph:moon'} width={20} />
-            </button>
-            <button
-              onClick={() => setMenuOpen(o => !o)}
-              aria-label="Toggle menu"
-              className="p-1.5 rounded hover:bg-white/20 transition-colors"
-            >
-              <Icon icon={menuOpen ? 'ph:x' : 'ph:list'} width={22} />
-            </button>
-          </div>
+          {/* Mobile: hamburger */}
+          <button
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+            className="flex md:hidden p-1.5 rounded hover:text-secondary transition-colors"
+          >
+            <Icon icon={menuOpen ? 'ph:x' : 'ph:list'} width={22} />
+          </button>
         </div>
 
         {/* Mobile dropdown */}
         {menuOpen && (
-          <nav className="md:hidden flex flex-col px-4 pb-3 gap-1 bg-primary">
+          <nav className="md:hidden flex flex-col items-end px-4 pb-3 gap-1 bg-primary">
             {SHOW_WORK_NAV && (
               <NavLink
                 to="/work"
@@ -119,12 +83,21 @@ export default function NavBar({ onToggleTheme, isDark }: NavBarProps) {
         )}
       </header>
 
-      {/* Scroll to top button */}
+      {/* Dark mode toggle FAB */}
+      <button
+        onClick={onToggleTheme}
+        aria-label="Toggle dark mode"
+        className="fixed bottom-8 right-4 z-50 bg-btn-bg text-btn-text p-3 rounded-full shadow-lg hover:text-secondary dark:hover:text-btn-text dark:hover:bg-secondary transition-colors"
+      >
+        <Icon icon={isDark ? 'ph:sun' : 'ph:moon'} width={20} />
+      </button>
+
+      {/* Scroll to top FAB */}
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed bottom-20 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-dark transition-colors"
+          className="fixed bottom-32 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-dark transition-colors"
         >
           <Icon icon="ph:arrow-up" width={20} />
         </button>

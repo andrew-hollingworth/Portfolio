@@ -6,7 +6,7 @@ export default function About() {
       <h1 className="font-heading text-4xl sm:text-5xl font-semibold text-text-primary mb-8">
         Hey, I'm Andrew.
       </h1>
-      <p className="font-body text-base sm:text-lg text-text-secondary leading-relaxed mb-6">
+      <p className="font-body text-base sm:text-lg text-text-primary leading-relaxed mb-6">
         I'm a web developer with a passion for making things, storytelling, and
         learning. My experiences working in advertising and film production have
         taught me to plan my code three steps ahead and stay organized. My
@@ -19,7 +19,7 @@ export default function About() {
           href={RESUME_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-primary hover:text-primary-dark transition-colors underline underline-offset-4"
+          className="font-semibold text-text-secondary hover:text-secondary transition-colors underline underline-offset-4"
         >
           Take a look at my resumé!
         </a>
@@ -27,7 +27,7 @@ export default function About() {
       <img
         src="/images/profile.png"
         alt="Andrew Hollingworth"
-        className="block mx-auto max-w-xs sm:max-w-sm w-full rounded-xl shadow-md"
+        className="block mx-auto max-w-xs sm:max-w-sm w-full"
       />
     </div>
   )

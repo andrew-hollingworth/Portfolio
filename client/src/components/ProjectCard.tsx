@@ -10,10 +10,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200 bg-surface border border-text-secondary/10"
+      className="group flex flex-col rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200 bg-surface border border-border"
     >
       {project.image && (
-        <div className="h-48 overflow-hidden bg-secondary/20">
+        <div className="h-48 overflow-hidden bg-chip-bg">
           <img
             src={project.image}
             alt={project.title}
@@ -33,7 +33,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             {project.tags.map(tag => (
               <span
                 key={tag}
-                className="text-xs font-body px-2 py-0.5 rounded-full bg-secondary/30 text-text-secondary"
+                className="text-xs font-body px-2 py-0.5 rounded-full bg-chip-bg text-text-secondary"
               >
                 {tag}
               </span>
